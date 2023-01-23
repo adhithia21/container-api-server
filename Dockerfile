@@ -6,7 +6,7 @@ RUN go mod download
 COPY . ./
 RUN go build -o /app
 
-FROM golang:alpine3.16
+FROM alpine:latest
 WORKDIR /
 COPY --from=build /app /app
 EXPOSE 8000
