@@ -48,3 +48,14 @@ jobs:
             docker pull adhithia21/container-api-server:${{ github.run_number }}
             docker rm -f api-server
             docker run --name api-server -d -p 80:8000 adhithia21/container-api-server:${{ github.run_number }}
+
+  send-notification:
+    runs-on: ubuntu-latest
+    needs: deploy-container
+    steps:
+      - name: Kirim notifikasi ke discord
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD }}
+        with:
+          args: '{{ EVENT_PAYLOAD.repository.full_name }} berhasil deploy. adhithia21/container-api-server:${{ github.run_number }}'
