@@ -12,8 +12,9 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"code":    200,
-			"message": "api server v2",
+			"message": "api server v3",
 			"server":  hostname,
+			"author":  "Adhithia Irvan Rachmawan",
 		})
 	})
 	r.Run("0.0.0.0:8000")
