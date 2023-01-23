@@ -35,6 +35,7 @@ jobs:
 
   deploy-container:
     runs-on: ubuntu-latest
+    needs: build-and-push-docker
     steps:
       - name: deploye container image
         uses: appleboy/ssh-action@v0.1.7
