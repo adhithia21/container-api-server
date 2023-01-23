@@ -40,7 +40,7 @@ jobs:
       - name: deploye container image
         uses: appleboy/ssh-action@v0.1.7
         with:
-          hosts: ${{ secrets.SSH_IP }}
+          host: ${{ secrets.SSH_IP }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
