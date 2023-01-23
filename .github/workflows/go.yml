@@ -32,3 +32,17 @@ jobs:
       with:
         push: true
         tags: adhithia21/container-api-server:${{ github.run_number }}
+
+  deploy-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploye container image
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          hosts: ${{ secrets.SSH_IP }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker pull adhithia21/container-api-server:${{ github.run_number }}
+            docker rm -f api-server
+            docker run --name api-server -d -p 80:8000 adhithia21/container-api-server:${{ github.run_number }}
